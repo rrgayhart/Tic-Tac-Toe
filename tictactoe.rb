@@ -47,7 +47,7 @@ class TicTacToe < Processing::App
 
   def run_command(input)
     number = input[-1]
-    letter = input[0]
+    letter = input[0].chr
     place_mark_in_box(number.chr.to_i, letter)
     warn "You made a play"
   end
@@ -84,13 +84,13 @@ class TicTacToe < Processing::App
       
       circle_diameter = 30
       x_size = 15
-      if letter == 120
+      if letter.downcase == 'x'
         fill 0,20
         line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
         
         fill 0,20
         line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
-      elsif letter == 111 #redundant
+      elsif letter.downcase == 'o' #redundant
         fill 10,0
         ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
       end
