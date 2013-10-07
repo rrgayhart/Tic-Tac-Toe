@@ -14,6 +14,15 @@ class TicTacToe < Processing::App
   def draw
   end
 
+  def box_validation
+    # after calories.
+    @board_state = (1..9).each_with_object(Hash.new("empty")) do |box,board|
+      board[box] = "empty"
+    end
+
+    @box_state = {1 => "empty", 2=> "empty"}
+  end
+
   def key_pressed
     warn " A key was pressed: #{key.inspect}"
     @queue ||= ""
@@ -38,6 +47,7 @@ class TicTacToe < Processing::App
 
   def place_mark_in_box(number, letter)
     # figure out, x, y coordinates of where to put the shapes
+    # check if @box_state[number] == "empty"
     first_row = [1, 2, 3]
     middle_row = [4,5,6]
 
@@ -72,6 +82,8 @@ class TicTacToe < Processing::App
       fill 10,0
       ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
     end
+
+    # update @box_status[number] => "Taken"
   end
 
   box = 200
