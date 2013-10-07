@@ -32,23 +32,40 @@ class TicTacToe < Processing::App
   def run_command(input)
     number = input[-1]
     letter = input[0]
-    place_mark_in_box(number, letter)
+    place_mark_in_box(number.chr.to_i, letter)
     warn "You made a play"
   end
 
   def place_mark_in_box(number, letter)
     # figure out, x, y coordinates of where to put the shapes
-    if number == 1
-      x_coord = 0
-      y_coord = 0
+    first_row = [1, 2, 3]
+    middle_row = [4,5,6]
+
+    if first_row.include?(number)
+      y_coord = 33
+    elsif middle_row.include?(number)
+      y_coord = 100
+    else
+      y_coord = 166
+    end
+
+    left_column = [1,4,7]
+    center_column = [2,5,8]
+
+    if left_column.include?(number)
+      x_coord = 33
+    elsif center_column.include?(number)
+      x_coord = 100
+    else
+      x_coord = 166
     end
 
     if letter == 120
       fill 0,20
-      rect(x_coord,y_coord,50,50)
+      rect(x_coord,y_coord,10,10)
     else letter == 111
       fill 0,200
-      rect(x_coord,y_coord,50,50)
+      rect(x_coord,y_coord,10,10)
     end
   end
 
