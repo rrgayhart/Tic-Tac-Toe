@@ -59,13 +59,18 @@ class TicTacToe < Processing::App
     else
       x_coord = 166
     end
-
+    
+    circle_diameter = 30
+    x_size = 15
     if letter == 120
       fill 0,20
-      rect(x_coord,y_coord,10,10)
-    else letter == 111
-      fill 0,200
-      rect(x_coord,y_coord,10,10)
+      line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
+      
+      fill 0,20
+      line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
+    elsif letter == 111 #redundant
+      fill 10,0
+      ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
     end
   end
 
