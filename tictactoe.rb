@@ -3,6 +3,7 @@ require 'ruby-processing'
 class TicTacToe < Processing::App
 
   def setup
+    board_validation_setup
     box = 200
     third = box/3
     line(box,third,0,third)
@@ -14,13 +15,19 @@ class TicTacToe < Processing::App
   def draw
   end
 
-  def box_validation
-    # after calories.
-    @board_state = (1..9).each_with_object(Hash.new("empty")) do |box,board|
-      board[box] = "empty"
+  def board_validation_setup
+    max_board_size = 9
+    # (1..max_board_size)
+    @board_state = Hash.new
+    [1,2,3,4,5,6,7,8,9].each do |box|
+      @board_state[box] = :empty
     end
+    # @board_state = Hash.new {|h,k| }
+    # @board_state.default(:empty)
+  end
 
-    #@box_state = {1 => "empty", 2=> "empty"}
+  def board_state
+    @board_state 
   end
 
   def key_pressed
@@ -45,45 +52,50 @@ class TicTacToe < Processing::App
     warn "You made a play"
   end
 
+  def check_box_state(number)
+    @board_state[number]
+  end
+
   def place_mark_in_box(number, letter)
-    # figure out, x, y coordinates of where to put the shapes
-    # check if @box_state[number] == "empty"
-    first_row = [1, 2, 3]
-    middle_row = [4,5,6]
-
-    if first_row.include?(number)
-      y_coord = 33
-    elsif middle_row.include?(number)
-      y_coord = 100
+    unless check_box_state(number) == :empty
+      warn "Pick a different box! That one is taken."
     else
-      y_coord = 166
-    end
+      first_row = [1, 2, 3]
+      middle_row = [4,5,6]
 
-    left_column = [1,4,7]
-    center_column = [2,5,8]
+      if first_row.include?(number)
+        y_coord = 33
+      elsif middle_row.include?(number)
+        y_coord = 100
+      else
+        y_coord = 166
+      end
 
-    if left_column.include?(number)
-      x_coord = 33
-    elsif center_column.include?(number)
-      x_coord = 100
-    else
-      x_coord = 166
-    end
-    
-    circle_diameter = 30
-    x_size = 15
-    if letter == 120
-      fill 0,20
-      line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
+      left_column = [1,4,7]
+      center_column = [2,5,8]
+
+      if left_column.include?(number)
+        x_coord = 33
+      elsif center_column.include?(number)
+        x_coord = 100
+      else
+        x_coord = 166
+      end
       
-      fill 0,20
-      line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
-    elsif letter == 111 #redundant
-      fill 10,0
-      ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
+      circle_diameter = 30
+      x_size = 15
+      if letter == 120
+        fill 0,20
+        line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
+        
+        fill 0,20
+        line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
+      elsif letter == 111 #redundant
+        fill 10,0
+        ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
+      end
     end
-
-    # update @box_status[number] => "Taken"
+    @board_state[number] = letter.to_sym
   end
 
   box = 200
