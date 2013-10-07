@@ -20,7 +20,7 @@ class TicTacToe < Processing::App
       board[box] = "empty"
     end
 
-    @box_state = {1 => "empty", 2=> "empty"}
+    #@box_state = {1 => "empty", 2=> "empty"}
   end
 
   def key_pressed
