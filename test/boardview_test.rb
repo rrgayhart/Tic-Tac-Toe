@@ -23,6 +23,14 @@ class BoardViewTest < MiniTest::Test
     assert_kind_of Hash, board_view.board.spaces
   end
 
+  def test_boardview_responds_to_draw
+    assert_respond_to board_view, :draw
+  end
+
+  def test_no_error_when_draw_called
+    assert board_view.draw
+  end
+
 end
 
 class TestApp

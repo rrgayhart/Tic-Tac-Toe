@@ -9,13 +9,22 @@ class BoardView
   end
 
   def check_box_state(number)
-    @app.model #more stuff
+    @app.model('one')
     # @board_state[number]
+  end
+
+  def draw
+    #print out the board layout
+    place_mark_in_box(1,'x')
+    #print out the present markers
+    #print out victor if any
+    true
   end
 
   def place_mark_in_box(number, letter)
     unless check_box_state(number) == :empty
       warn "Pick a different box! That one is taken."
+      raise 'Hell'
     else
       first_row = [1, 2, 3]
       middle_row = [4,5,6]
