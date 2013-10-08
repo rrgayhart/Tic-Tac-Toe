@@ -104,5 +104,3 @@ class TicTacToe < Processing::App
 
 end
 
-class TicTacToeTroller
-end
