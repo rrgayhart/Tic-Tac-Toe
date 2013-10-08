@@ -18,5 +18,9 @@ class TicTacToeTest < MiniTest::Test
   def test_run_command_updates_model_correctly
     ttt.run_command('x1')
     assert_equal 1, ttt.model.spaces[:a]
+    ttt.run_command('o2')
+    assert_equal 0, ttt.model.spaces[:b]
   end
+
+  #def test_run_command_will_
 end
