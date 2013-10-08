@@ -3,7 +3,7 @@ class Board
   attr_accessor :spaces
 
   def initialize
-    @spaces = {a:nil, b:nil, c: nil, d: nil, e: nil, f: nil, g: nil, h: nil, i: nil}
+    @spaces = {:a => nil, :b => nil, :c => nil, :d => nil, :e => nil, :f => nil, :g => nil, :h => nil, :i => nil}
   end
 
   def move(space, move_num)

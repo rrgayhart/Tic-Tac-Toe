@@ -1,4 +1,4 @@
-require_relative 'board'
+require 'board'
 
 class BoardView
   attr_reader :app, :board
@@ -9,12 +9,12 @@ class BoardView
   end
 
   def check_box_state(number)
-    @app.model('one')
-    # @board_state[number]
+    board.spaces[number]
   end
 
   def draw
     #print out the board layout
+    #REDRAW THE BOARD this is what it's look like method
     place_mark_in_box(1,'x')
     #print out the present markers
     #print out victor if any
@@ -22,10 +22,10 @@ class BoardView
   end
 
   def place_mark_in_box(number, letter)
-    unless check_box_state(number) == :empty
-      warn "Pick a different box! That one is taken."
-      raise 'Hell'
-    else
+    #unless check_box_state(number).nil?
+   #   warn "Pick a different box! That one is taken."
+      #raise 'Hell'
+    #else
       first_row = [1, 2, 3]
       middle_row = [4,5,6]
 
@@ -51,17 +51,17 @@ class BoardView
       circle_diameter = 30
       x_size = 15
       if letter.downcase == 'x'
-        fill 0,20
-        line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
+        app.fill 0,20
+        app.line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
 
-        fill 0,20
-        line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
+        app.fill 0,20
+        app.line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
       elsif letter.downcase == 'o' #redundant
-        fill 10,0
-        ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
+        app.fill 10,0
+        app.ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
       end
-    end
-    @board_state[number] = letter.to_sym
+    #end
+    #@board_state[number] = letter.to_sym
   end
 
 end

@@ -1,7 +1,10 @@
 require 'ruby-processing'
 require 'board'
+require 'boardview'
 
 class TicTacToe < Processing::App
+
+  attr_reader :board_view
 
   def setup
     box = 200
@@ -10,9 +13,11 @@ class TicTacToe < Processing::App
     line(box,2*third,0,2*third)
     line(third,box,third,0)
     line(2*third,box,2*third,0)
+    @board_view = BoardView.new(self,Board.new)
   end
 
   def draw
+    board_view.draw
   end
 
   # def board_validation_setup
@@ -48,7 +53,8 @@ class TicTacToe < Processing::App
   def run_command(input)
     number = input[-1]
     letter = input[0].chr
-    place_mark_in_box(number.chr.to_i, letter)
+    #board_view.place_mark_in_box(number.chr.to_i, letter)
+    # UPDATE MODEL
     warn "You made a play"
   end
 

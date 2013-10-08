@@ -36,7 +36,7 @@ end
 class TestApp
 
 
-  def method_missing(name, params)
+  def method_missing(name, *params)
 
   end
 end
