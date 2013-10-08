@@ -1,4 +1,5 @@
 require 'ruby-processing'
+require 'board'
 
 class TicTacToe < Processing::App
 
@@ -27,7 +28,7 @@ class TicTacToe < Processing::App
   end
 
   def board_state
-    @board_state 
+    @board_state
   end
 
   def key_pressed
@@ -81,13 +82,13 @@ class TicTacToe < Processing::App
       else
         x_coord = 166
       end
-      
+
       circle_diameter = 30
       x_size = 15
       if letter.downcase == 'x'
         fill 0,20
         line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
-        
+
         fill 0,20
         line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
       elsif letter.downcase == 'o' #redundant
@@ -101,4 +102,7 @@ class TicTacToe < Processing::App
   box = 200
   TicTacToe.new(:width => box, :height => box, :full_screen => false)
 
+end
+
+class TicTacToeTroller
 end
