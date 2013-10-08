@@ -1,4 +1,4 @@
-require 'board'
+
 
 class BoardView
   attr_reader :app, :board
@@ -12,8 +12,25 @@ class BoardView
     board.spaces[number]
   end
 
+  def redraw_markers
+    board.space.each do |space, value|
+      if value % 2 == 1
+        draw_marker('x')
+      else
+        draw_marker('o')
+      end
+    end
+  end
+
+  def draw_marker(value)
+    "HAHAHA no"
+  end
+
   def draw
+    #redraw_markers
     #print out the board layout
+    #board.spaces.each do |space|
+    #  if 
     #REDRAW THE BOARD this is what it's look like method
     place_mark_in_box(1,'x')
     #print out the present markers

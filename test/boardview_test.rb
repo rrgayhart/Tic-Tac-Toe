@@ -31,6 +31,11 @@ class BoardViewTest < MiniTest::Test
     assert board_view.draw
   end
 
+  # def test_method_draw_calls_redraw_markers
+  #   board_view.draw
+  #   assert_send([board_view, :redraw_markers])
+  # end
+
 end
 
 class TestApp
