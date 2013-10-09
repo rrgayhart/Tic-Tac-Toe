@@ -59,10 +59,6 @@ class TicTacToe < Processing::App
     board.move(placement_mapping[number], letter_mapping)
     warn "You made a play"
   end
-
-
-
-
  
 
   box = 200
