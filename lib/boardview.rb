@@ -77,55 +77,18 @@ class BoardView
   end
 
   def draw
-    #redraw_markers
-    #print out the board layout
-    #REDRAW THE BOARD this is what it's look like method
+    redraw_board
     redraw_markers
-    #print out the present markers
     #print out victor if any
   end
 
-  def place_mark_in_box(number, letter)
-    #unless check_box_state(number).nil?
-   #   warn "Pick a different box! That one is taken."
-      #raise 'Hell'
-    #else
-      first_row = [1, 2, 3]
-      middle_row = [4,5,6]
-
-      if first_row.include?(number)
-        y_coord = 33
-      elsif middle_row.include?(number)
-        y_coord = 100
-      else
-        y_coord = 166
-      end
-
-      left_column = [1,4,7]
-      center_column = [2,5,8]
-
-      if left_column.include?(number)
-        x_coord = 33
-      elsif center_column.include?(number)
-        x_coord = 100
-      else
-        x_coord = 166
-      end
-
-      circle_diameter = 30
-      x_size = 15
-      if letter.downcase == 'x'
-        app.fill 0,20
-        app.line(x_coord-x_size,y_coord-x_size,x_coord+x_size,y_coord+x_size)
-
-        app.fill 0,20
-        app.line(x_coord-x_size,y_coord+x_size,x_coord+x_size,y_coord-x_size)
-      elsif letter.downcase == 'o' #redundant
-        app.fill 10,0
-        app.ellipse(x_coord,y_coord,circle_diameter,circle_diameter)
-      end
-    #end
-    #@board_state[number] = letter.to_sym
+  def redraw_board
+    box = 200
+    third = box/3
+    app.line(box,third,0,third)
+    app.line(box,2*third,0,2*third)
+    app.line(third,box,third,0)
+    app.line(2*third,box,2*third,0)
   end
 
 end
