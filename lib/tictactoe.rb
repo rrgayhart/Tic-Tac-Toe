@@ -39,10 +39,10 @@ class TicTacToe < Processing::App
   def determine_box(x, y)
     column = determine_column_or_row(x)
     row = determine_column_or_row(y)
-    case row
-      when 1 then column * row
-      when 2 then column * row + 3
-      when 3 then column * row + 6
+    if row == 1
+      column * row
+    else
+      (column * row) + (row-1)*(box_dimension - column)
     end
   end
 
