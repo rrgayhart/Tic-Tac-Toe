@@ -4,15 +4,46 @@ require 'boardview'
 
 class TicTacToe < Processing::App
 
-  attr_reader :board_view, :board
+  attr_reader :board_view, :board, :box, :box_dimension
 
   def setup
     @board = Board.new
     @board_view = BoardView.new(self, @board)
+    @box = 200
+    @box_dimension = 3
   end
 
   def draw
     board_view.draw
+  end
+
+  def mouse_pressed
+    box_num = determine_box(mouse_x, mouse_y)
+    @player_marker ||= 'x'
+    letter_mapping = (@player_marker == 'x' ? 1 : 0)
+    placement_mapping = {1 => :a, 2 => :b, 3 => :c, 4 => :d, 5 => :e, 6 => :f, 7 => :g, 8 => :h, 9 => :i}
+    board.move(placement_mapping[box_num], letter_mapping)
+  end
+
+  def determine_column_or_row(position)
+    single_box_width = @box / @box_dimension
+    if position < single_box_width
+      1
+    elsif position < 2 * single_box_width
+      2
+    else
+      3
+    end
+  end
+
+  def determine_box(x, y)
+    column = determine_column_or_row(x)
+    row = determine_column_or_row(y)
+    case row
+      when 1 then column * row
+      when 2 then column * row + 3
+      when 3 then column * row + 6
+    end
   end
 
   def key_pressed
