@@ -14,6 +14,7 @@ class BoardView
 
   def redraw_markers
     board.space.each do |space, value|
+      space = space_nums[space.to_s]
       if value % 2 == 1
         draw_marker('x')
       else
@@ -22,15 +23,60 @@ class BoardView
     end
   end
 
-  def draw_marker(value)
-    "HAHAHA no"
+  def space_nums
+    Hash[('a'..'i').zip(1..9)]
+  end
+
+  def draw_marker(value, box_num)
+    x_cord = get_x_cord(box_num)
+    y_cord = get_y_cord(box_num)
+    place_value_specific_marker(value, x_cord, y_cord)
+  end
+
+  def place_value_specific_marker(value, x_cord, y_cord)
+    circle_diameter = 30
+    x_size = 15
+    if letter.downcase == 'x'
+      app.fill 0,20
+      app.line(x_cord-x_size,y_cord-x_size,x_cord+x_size,y_cord+x_size)
+
+      app.fill 0,20
+      app.line(x_cord-x_size,y_cord+x_size,x_cord+x_size,y_cord-x_size)
+    elsif letter.downcase == 'o' #redundant
+      app.fill 10,0
+      app.ellipse(x_cord,y_cord,circle_diameter,circle_diameter)
+    end
+  end
+
+  def get_y_cord(number)
+    first_row = [1,2,3]
+    middle_row = [4,5,6]
+
+    if first_row.include?(number)
+      33
+    elsif middle_row.include?(number)
+      100
+    else
+      166
+    end
+  end
+
+  def get_x_cord(number)
+    left_column = [1,4,7]
+    center_column = [2,5,8]
+
+    if left_column.include?(number)
+      33
+    elsif center_column.include?(number)
+      100
+    else
+      166
+    end
   end
 
   def draw
     #redraw_markers
     #print out the board layout
-    #board.spaces.each do |space|
-    #  if 
     #REDRAW THE BOARD this is what it's look like method
     place_mark_in_box(1,'x')
     #print out the present markers
