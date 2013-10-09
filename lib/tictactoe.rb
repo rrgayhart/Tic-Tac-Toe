@@ -4,7 +4,7 @@ require 'boardview'
 
 class TicTacToe < Processing::App
 
-  attr_reader :board_view
+  attr_reader :board_view, :board
 
   def setup
     box = 200
@@ -13,7 +13,8 @@ class TicTacToe < Processing::App
     line(box,2*third,0,2*third)
     line(third,box,third,0)
     line(2*third,box,2*third,0)
-    @board_view = BoardView.new(self,Board.new)
+    @board = Board.new
+    @board_view = BoardView.new(self, @board)
   end
 
   def draw
@@ -51,12 +52,14 @@ class TicTacToe < Processing::App
   end
 
   def run_command(input)
-    number = input[-1]
-    letter = input[0].chr
-    #board_view.place_mark_in_box(number.chr.to_i, letter)
-    # UPDATE MODEL
+    letter = input[0].chr.downcase
+    number = input[-1].chr.to_i
+    placement_mapping = {1 => :a, 2 => :b, 3 => :c, 4 => :d, 5 => :e, 6 => :f, 7 => :g, 8 => :h, 9 => :i}
+    letter_mapping = (letter == 'x' ? 1 : 0)
+    board.move(placement_mapping[number], letter_mapping)
     warn "You made a play"
   end
+
 
 
 

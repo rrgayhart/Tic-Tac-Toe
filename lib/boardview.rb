@@ -38,13 +38,13 @@ class BoardView
   def place_value_specific_marker(value, x_cord, y_cord)
     circle_diameter = 30
     x_size = 15
-    if letter.downcase == 'x'
+    if value.downcase == 'x'
       app.fill 0,20
       app.line(x_cord-x_size,y_cord-x_size,x_cord+x_size,y_cord+x_size)
 
       app.fill 0,20
       app.line(x_cord-x_size,y_cord+x_size,x_cord+x_size,y_cord-x_size)
-    elsif letter.downcase == 'o' #redundant
+    elsif value.downcase == 'o' #redundant
       app.fill 10,0
       app.ellipse(x_cord,y_cord,circle_diameter,circle_diameter)
     end
