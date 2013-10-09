@@ -20,14 +20,19 @@ class TicTacToe < Processing::App
     @queue ||= ""
     if key != "\n"
       @queue += key
-    else
-      if @queue =~ /(X|O)\d/i
+    elsif @queue =~ /(X|O)\d/i
         run_command(@queue)
-      else
-        warn "The command should be an X or an O followed by 1-9."
-      end
-      @queue = ""
+    elsif @queue == "reset"
+      reset_board
+    else
+        warn "The command should be an X or an O followed by 1-9. Or, if you're annoyed
+        type 'reset' followed by return to reset the board."
+    @queue = ""
     end
+  end
+
+  def reset_board
+    board.reset
   end
 
   def run_command(input)
@@ -38,7 +43,6 @@ class TicTacToe < Processing::App
     board.move(placement_mapping[number], letter_mapping)
     warn "You made a play"
   end
- 
 
   box = 200
   TicTacToe.new(:width => box, :height => box, :full_screen => false)

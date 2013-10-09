@@ -6,6 +6,12 @@ class Board
     @spaces = {:a => nil, :b => nil, :c => nil, :d => nil, :e => nil, :f => nil, :g => nil, :h => nil, :i => nil}
   end
 
+  def reset
+    spaces.each do |key,value|
+      spaces[key] = nil
+    end
+  end
+
   def move(space, move_num)
     @spaces[space] = move_num unless @spaces[space]
   end

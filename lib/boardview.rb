@@ -77,9 +77,22 @@ class BoardView
   end
 
   def draw
+    check_for_dead_game
+    check_for_winner
     redraw_board
     redraw_markers
-    #print out victor if any
+  end
+
+  def check_for_dead_game
+    if board.full? && !board.winning_combination_present?
+      app.background(255,0,0,100)
+    end
+  end
+
+  def check_for_winner
+    if board.winning_combination_present?
+      app.background(0,255,0,0.5)#DO SOMEHTING CRAZY
+    end
   end
 
   def redraw_board

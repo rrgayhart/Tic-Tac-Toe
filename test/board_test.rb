@@ -99,4 +99,12 @@ class BoardTest < MiniTest::Test
     board.move(:c, 3)
     assert_equal [[:a, :b, :c]], board.find_full_sets([[:a,:b,:c],[:d,:e,:f]])
   end
+
+  def test_it_resets_spaces_to_all_nil
+    board = Board.new
+    board.move(:a, 1)
+    board.reset
+    assert board.spaces.all?{|pair| pair[1].nil?}
+  end
+
 end
