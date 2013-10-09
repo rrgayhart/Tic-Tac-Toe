@@ -13,12 +13,14 @@ class BoardView
   end
 
   def redraw_markers
-    board.space.each do |space, value|
-      space = space_nums[space.to_s]
-      if value % 2 == 1
-        draw_marker('x')
-      else
-        draw_marker('o')
+    board.spaces.each do |space, value|
+      box = space_nums[space.to_s]
+      unless value.nil?
+        if value % 2 == 1
+          draw_marker('x', box)
+        else
+          draw_marker('o', box)
+        end
       end
     end
   end
@@ -78,10 +80,9 @@ class BoardView
     #redraw_markers
     #print out the board layout
     #REDRAW THE BOARD this is what it's look like method
-    place_mark_in_box(1,'x')
+    redraw_markers
     #print out the present markers
     #print out victor if any
-    true
   end
 
   def place_mark_in_box(number, letter)
