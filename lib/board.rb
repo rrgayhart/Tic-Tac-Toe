@@ -7,9 +7,7 @@ class Board
   end
 
   def reset
-    spaces.each do |key,value|
-      spaces[key] = nil
-    end
+    @spaces = {:a => nil, :b => nil, :c => nil, :d => nil, :e => nil, :f => nil, :g => nil, :h => nil, :i => nil}
   end
 
   def move(space, move_num)

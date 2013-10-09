@@ -77,6 +77,7 @@ class BoardView
   end
 
   def draw
+    app.background(100,100,100)
     check_for_dead_game
     check_for_winner
     redraw_board

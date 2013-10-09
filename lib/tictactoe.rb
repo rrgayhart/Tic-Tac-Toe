@@ -21,9 +21,11 @@ class TicTacToe < Processing::App
     if key != "\n"
       @queue += key
     elsif @queue =~ /(X|O)\d/i
-        run_command(@queue)
+      run_command(@queue)
+      @queue = ""
     elsif @queue == "reset"
       reset_board
+      @queue = ""
     else
         warn "The command should be an X or an O followed by 1-9. Or, if you're annoyed
         type 'reset' followed by return to reset the board."
@@ -33,6 +35,7 @@ class TicTacToe < Processing::App
 
   def reset_board
     board.reset
+    puts board.spaces
   end
 
   def run_command(input)
