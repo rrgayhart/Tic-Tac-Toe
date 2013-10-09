@@ -23,6 +23,7 @@ class TicTacToe < Processing::App
     letter_mapping = (@player_marker == 'x' ? 1 : 0)
     placement_mapping = {1 => :a, 2 => :b, 3 => :c, 4 => :d, 5 => :e, 6 => :f, 7 => :g, 8 => :h, 9 => :i}
     board.move(placement_mapping[box_num], letter_mapping)
+    @player_marker = @player_marker == 'o' ? 'x' : 'o'
   end
 
   def determine_column_or_row(position)
