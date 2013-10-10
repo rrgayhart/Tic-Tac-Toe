@@ -22,7 +22,7 @@ class TicTacToe < Processing::App
     @player_marker ||= 'x'
     letter_mapping = (@player_marker == 'x' ? 1 : 0)
     placement_mapping = {1 => :a, 2 => :b, 3 => :c, 4 => :d, 5 => :e, 6 => :f, 7 => :g, 8 => :h, 9 => :i}
-    board.move(placement_mapping[box_num], letter_mapping)
+    board.move(placement_mapping[box_num], letter_mapping) unless board.expired?
     @player_marker = @player_marker == 'o' ? 'x' : 'o'
   end
 
@@ -76,7 +76,7 @@ class TicTacToe < Processing::App
     number = input[-1].chr.to_i
     placement_mapping = {1 => :a, 2 => :b, 3 => :c, 4 => :d, 5 => :e, 6 => :f, 7 => :g, 8 => :h, 9 => :i}
     letter_mapping = (letter == 'x' ? 1 : 0)
-    board.move(placement_mapping[number], letter_mapping)
+    board.move(placement_mapping[number], letter_mapping) unless board.expired?
     warn "You made a play"
   end
 
