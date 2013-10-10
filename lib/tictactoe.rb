@@ -47,6 +47,33 @@ class TicTacToe < Processing::App
     end
   end
 
+  def get_x_y_cords_for_box(box)
+    row = (box/box_dimension.to_f).ceil
+    column = box%box_dimension == 0 ? box_dimension : box%box_dimension
+    [coordinate(row), coordinate(column)]
+  end
+
+  def coordinate(row_or_col)
+    row_or_col*(box/box_dimension)-(box/(box_dimension*2))
+  end
+
+  def get_box_nums_for_winner
+    convert_board_letters(board.winning_set)
+  end
+
+  def get_coordinates_for_winner
+    get_box_nums_for_winner.map do |box|
+      get_x_y_cords_for_box(box)
+    end
+  end
+
+  def convert_board_letters(letters_array)
+    mapping = {:a=>1,:b=>2,:c=>3,:d=>4,:e=>5,:f=>6,:g=>7,:h=>8,:i=>9}
+    letters_array.map do |sym_letter|
+      mapping[sym_letter]
+    end
+  end
+
   def key_pressed
     warn " A key was pressed: #{key.inspect}"
     @queue ||= ""

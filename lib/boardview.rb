@@ -1,5 +1,3 @@
-
-
 class BoardView
   attr_reader :app, :board
 
@@ -82,6 +80,7 @@ class BoardView
     check_for_winner
     redraw_board
     redraw_markers
+    draw_winning_line if app.board.winning_combination_present?
   end
 
   def check_for_dead_game
@@ -92,7 +91,7 @@ class BoardView
 
   def check_for_winner
     if board.winning_combination_present?
-      app.background(0,255,0,0.5)#DO SOMEHTING CRAZY
+      app.background(0,255,0,0.5)
     end
   end
 
@@ -105,4 +104,12 @@ class BoardView
     app.line(2*third,box,2*third,0)
   end
 
+  def draw_winning_line
+    winner_cords = app.get_coordinates_for_winner
+    first = winner_cords[0]
+    last = winner_cords[2]
+    app.stroke_weight(5)
+    app.line(first[0],first[1],last[0],last[1])
+    puts winner_cords
+  end
 end
