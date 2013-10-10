@@ -69,10 +69,11 @@ class TicTacToe < Processing::App
     puts "x is #{x}"
     puts "y is #{y}"
     web_letter_mapping = (letter == 'x' ? 1 : 0)
-    web_box_number = determine_box(x.to_i,y.to_i)
+    web_box_number = determine_box_from_columns(x.to_i,y.to_i)
     puts "web_letter is #{web_letter_mapping}"
     puts "web_box is #{web_box_number}"
     board.move(placement_mapping[web_box_number], web_letter_mapping)
+    #print board.spaces
     if box_num_state
       @player_marker = @player_marker == 'o' ? 'x' : 'o'
     end
@@ -98,6 +99,14 @@ class TicTacToe < Processing::App
   def determine_box(x, y)
     column = determine_column_or_row(x)
     row = determine_column_or_row(y)
+    if row == 1
+      column * row
+    else
+      (column * row) + (row-1)*(box_dimension - column)
+    end
+  end
+
+  def determine_box_from_columns(column, row)
     if row == 1
       column * row
     else
