@@ -50,8 +50,9 @@ class TicTacToe < Processing::App
   def key_pressed
     warn " A key was pressed: #{key.inspect}"
     @queue ||= ""
+
     if key != "\n"
-      @queue += key
+      @queue += key.inspect.gsub('"',"")
     elsif @queue =~ /(X|O)\d/i
       run_command(@queue)
       @queue = ""
