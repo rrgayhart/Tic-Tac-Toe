@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'httparty'
+gem 'json'
+gem 'spoon'
+gem 'ruby-processing'
 gem 'guard'
 gem 'guard-minitest'
 gem 'pry'
+gem 'faraday'
