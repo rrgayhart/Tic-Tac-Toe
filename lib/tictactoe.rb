@@ -13,11 +13,6 @@ class TicTacToe < Processing::App
     @box_dimension = 3
   end
 
-  # def draw_winning_line(fx,fy,lx,ly)
-  #   stroke_weight(5)
-  #   line(fx,fy,lx,ly)
-  # end
-
   def draw
     board_view.draw
   end
