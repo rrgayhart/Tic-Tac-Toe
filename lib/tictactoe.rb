@@ -13,6 +13,11 @@ class TicTacToe < Processing::App
     @box_dimension = 3
   end
 
+  # def draw_winning_line(fx,fy,lx,ly)
+  #   stroke_weight(5)
+  #   line(fx,fy,lx,ly)
+  # end
+
   def draw
     board_view.draw
   end
@@ -47,10 +52,10 @@ class TicTacToe < Processing::App
     end
   end
 
-  def get_x_y_cords_for_box(box)
-    row = (box/box_dimension.to_f).ceil
-    column = box%box_dimension == 0 ? box_dimension : box%box_dimension
-    [coordinate(row), coordinate(column)]
+  def get_x_y_cords_for_box(box_num)
+    row = (box_num/box_dimension.to_f).ceil
+    column = box_num%box_dimension == 0 ? box_dimension : box_num%box_dimension
+    [coordinate(column), coordinate(row)]
   end
 
   def coordinate(row_or_col)
@@ -62,8 +67,8 @@ class TicTacToe < Processing::App
   end
 
   def get_coordinates_for_winner
-    get_box_nums_for_winner.map do |box|
-      get_x_y_cords_for_box(box)
+    get_box_nums_for_winner.map do |box_num|
+      get_x_y_cords_for_box(box_num)
     end
   end
 
@@ -95,7 +100,6 @@ class TicTacToe < Processing::App
 
   def reset_board
     board.reset
-    puts board.spaces
   end
 
   def run_command(input)

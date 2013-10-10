@@ -110,6 +110,5 @@ class BoardView
     last = winner_cords[2]
     app.stroke_weight(5)
     app.line(first[0],first[1],last[0],last[1])
-    puts winner_cords
   end
 end
