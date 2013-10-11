@@ -15,6 +15,7 @@ class TicTacToe < Processing::App
     @game_id = create_game
     joined_status = join_game(game_id)
     stroke_weight(3)
+    image_mode CENTER
   end
 
   def create_game
@@ -134,6 +135,10 @@ class TicTacToe < Processing::App
     elsif @queue == "reset"
       reset_board
       @queue = ""
+    elsif @queue == "bizarro"
+      reset_board
+      @queue = ""
+      board_view.bizarro = true
     else
         warn "The command should be an X or an O followed by 1-9. Or, if you're annoyed
         type 'reset' followed by return to reset the board."

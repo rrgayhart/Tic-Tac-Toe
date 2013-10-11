@@ -1,9 +1,11 @@
 class BoardView
-  attr_reader :app, :board
+  attr_reader :app, :board 
+  attr_accessor :bizarro
 
   def initialize(app, board)
     @app = app
     @board = board
+    @bizarro = false
   end
 
   def check_box_state(number)
@@ -30,8 +32,27 @@ class BoardView
   def draw_marker(value, box_num)
     x_cord = get_x_cord(box_num)
     y_cord = get_y_cord(box_num)
-    place_value_specific_marker(value, x_cord, y_cord)
+    if @bizarro == false
+      place_value_specific_marker(value, x_cord, y_cord)
+    else
+      bizarro_place_value_specific_marker(value, x_cord, y_cord)
+    end
   end
+
+  def bizarro_place_value_specific_marker(value, x_cord, y_cord)
+    circle_diameter = 30
+    x_size = 15
+    if value.downcase == 'x'
+      @a = app.load_image "mrmarsh.jpg"
+      app.fill 0,20
+      app.image(@a, x_cord,y_cord)
+    elsif value.downcase == 'o' #redundant
+      @a = app.load_image "second.jpg"
+      app.fill 10,0
+      app.image(@a, x_cord,y_cord)
+    end
+  end
+
 
   def place_value_specific_marker(value, x_cord, y_cord)
     circle_diameter = 30
