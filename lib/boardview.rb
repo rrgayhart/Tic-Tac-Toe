@@ -108,7 +108,6 @@ class BoardView
     winner_cords = app.get_coordinates_for_winner
     first = winner_cords[0]
     last = winner_cords[2]
-    app.stroke_weight(5)
     app.line(first[0],first[1],last[0],last[1])
   end
 end

@@ -14,6 +14,7 @@ class TicTacToe < Processing::App
     @box_dimension = 3
     @game_id = create_game
     joined_status = join_game(game_id)
+    stroke_weight(3)
   end
 
   def create_game
